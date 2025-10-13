@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code for Honeywell DevSecOps | FedRAMP Compliant AI Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .nav {
+            background: rgba(255,255,255,0.98);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #191919;
+        }
+
+        .nav .links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav .links a:hover {
+            color: #DC143C;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section.gray {
+            background: #f8f9fa;
+        }
+
+        .section.dark {
+            background: linear-gradient(135deg, #191919 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #191919;
+        }
+
+        .section.dark h2 {
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #DC143C;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            border-left: 4px solid #DC143C;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #191919;
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-card li {
+            padding: 10px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .feature-card li::before {
+            content: "✓";
+            color: #DC143C;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-box .button {
+            display: inline-block;
+            background: white;
+            color: #DC143C;
+            padding: 18px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .cta-box .button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .compliance-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            margin: 10px;
+            font-weight: 600;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 40px;
+        }
+
+        .highlight-box {
+            background: #fff8f5;
+            border-left: 4px solid #DC143C;
+            padding: 30px;
+            border-radius: 6px;
+            margin: 30px 0;
+        }
+
+        .highlight-box strong {
+            color: #DC143C;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #DC143C;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="logo">Honeywell × Anthropic</div>
+            <div class="links">
+                <a href="#devsecops">DevSecOps</a>
+                <a href="#overview">Overview</a>
+                <a href="#fedramp">FedRAMP</a>
+                <a href="#roi">ROI</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="badge">✓ FedRAMP High Authorized via AWS Bedrock</div>
+            <h1>Accelerate Honeywell DevSecOps with Claude Code</h1>
+            <p class="subtitle">
+                AI-powered development that meets your security requirements:<br>
+                2-3x faster development • FedRAMP compliant • Enterprise-grade security
+            </p>
+            <!-- Primary Metric - Larger, More Prominent -->
+            <div style="max-width: 600px; margin: 50px auto 40px;">
+                <div class="stat-card" style="padding: 50px 40px; border: 3px solid rgba(255,255,255,0.3);">
+                    <div class="number" style="font-size: 4.5rem; margin-bottom: 15px;">2-3x</div>
+                    <div class="label" style="font-size: 1.3rem; font-weight: 600;">Engineering Velocity Increase</div>
+                    <p style="color: #666; margin-top: 15px; font-size: 0.95rem;">Build features in weeks, not months</p>
+                </div>
+            </div>
+
+            <!-- Secondary Metrics - Balanced 2x2 Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 900px; margin: 0 auto;">
+                <div class="stat-card" style="padding: 35px 25px;">
+                    <div class="number" style="font-size: 2.5rem;">65%</div>
+                    <div class="label" style="font-size: 1rem;">Deployment Cycle Reduction</div>
+                    <p style="color: #666; margin-top: 10px; font-size: 0.85rem;">(Like Honeywell Achieved)</p>
+                </div>
+                <div class="stat-card" style="padding: 35px 25px;">
+                    <div class="number" style="font-size: 2.5rem;">100%</div>
+                    <div class="label" style="font-size: 1rem;">CI/CD Pipeline Automation</div>
+                    <p style="color: #666; margin-top: 10px; font-size: 0.85rem;">Already at scale</p>
+                </div>
+                <div class="stat-card" style="padding: 35px 25px; border: 2px solid #DC143C;">
+                    <div class="number" style="font-size: 1.8rem; line-height: 1.2;">FedRAMP<br>High</div>
+                    <div class="label" style="font-size: 1rem; margin-top: 10px;">Authorized via AWS Bedrock</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gray" id="devsecops">
+        <div class="container">
+            <h2>Claude Code for Honeywell DevSecOps Use Cases</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🔐</div>
+                    <h3>Secure Code Development</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Generate production-ready code with security best practices built-in from the start.</p>
+                    <ul>
+                        <li>OWASP Top 10 vulnerability prevention</li>
+                        <li>Secure authentication & authorization patterns</li>
+                        <li>Input validation and sanitization</li>
+                        <li>Secrets management integration</li>
+                        <li>Compliance with coding standards (MISRA, CWE)</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🤖</div>
+                    <h3>CI/CD Pipeline Automation</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Build and optimize your automated pipelines faster with AI assistance.</p>
+                    <ul>
+                        <li>Generate Jenkins/GitLab CI/CD configs</li>
+                        <li>Create automated test suites</li>
+                        <li>Build container and Kubernetes manifests</li>
+                        <li>Infrastructure as Code (Terraform, CloudFormation)</li>
+                        <li>Pipeline debugging and optimization</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Security Testing & Scanning</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Automate security testing integration and vulnerability remediation.</p>
+                    <ul>
+                        <li>SAST/DAST tool integration</li>
+                        <li>Container security scanning</li>
+                        <li>Dependency vulnerability analysis</li>
+                        <li>Automated security fix generation</li>
+                        <li>Compliance validation scripts</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">📝</div>
+                    <h3>Documentation & Compliance</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Generate comprehensive documentation required for compliance and audits.</p>
+                    <ul>
+                        <li>Security control documentation</li>
+                        <li>API documentation (OpenAPI/Swagger)</li>
+                        <li>Architecture decision records</li>
+                        <li>Runbooks and incident response guides</li>
+                        <li>Compliance evidence generation</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🔄</div>
+                    <h3>Legacy Code Modernization</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Refactor and secure legacy systems without breaking functionality.</p>
+                    <ul>
+                        <li>Code analysis and technical debt assessment</li>
+                        <li>Refactoring with preserved behavior</li>
+                        <li>Security vulnerability remediation</li>
+                        <li>Migration to modern frameworks</li>
+                        <li>Comprehensive test generation</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">👥</div>
+                    <h3>Team Onboarding & Training</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Accelerate knowledge transfer for your 800+ DevSecOps team members.</p>
+                    <ul>
+                        <li>Interactive code walkthroughs</li>
+                        <li>Best practices explanation</li>
+                        <li>Custom training content generation</li>
+                        <li>Architecture pattern documentation</li>
+                        <li>Real-time coding assistance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="overview">
+        <div class="container">
+            <h2>Built for Honeywell's DevSecOps Maturity</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                You've transformed DevSecOps once—going from no standard process to 100% CI/CD automation and 65% faster deployments. Now accelerate further with AI that understands your security requirements.
+            </p>
+
+            <div class="two-column">
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 25px; color: #DC143C;">What Claude Code Does</h3>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                        Claude Code is an AI-native development environment that acts as an expert pair programmer for your 800+ trained DevSecOps team members. It writes code, runs tests, fixes bugs, and integrates with your existing toolchain—all while maintaining your security and compliance standards.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 15px 0; border-bottom: 1px solid #e0e0e0; color: #666;">
+                            <strong style="color: #191919;">🚀 2-3x Faster Development:</strong> Ship features in weeks instead of months
+                        </li>
+                        <li style="padding: 15px 0; border-bottom: 1px solid #e0e0e0; color: #666;">
+                            <strong style="color: #191919;">🔒 Security-First:</strong> Built-in security best practices and compliance
+                        </li>
+                        <li style="padding: 15px 0; border-bottom: 1px solid #e0e0e0; color: #666;">
+                            <strong style="color: #191919;">🔧 Tool Integration:</strong> Works with your existing DevSecOps stack
+                        </li>
+                        <li style="padding: 15px 0; color: #666;">
+                            <strong style="color: #191919;">📚 Knowledge Transfer:</strong> Onboard new engineers in days, not months
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 25px; color: #DC143C;">Why This Matters Now</h3>
+                    <div class="highlight-box">
+                        <strong>Your 2024 Transformation Success:<sup><a href="#footnote-1" style="color: #DC143C; text-decoration: none;">1</a></sup></strong>
+                        <ul style="margin-top: 15px; margin-left: 20px; color: #666; line-height: 2;">
+                            <li>Trained 800+ team members</li>
+                            <li>Achieved 100% CI/CD automation</li>
+                            <li>Reduced deployment cycles by 65%</li>
+                            <li>30% increase in DevSecOps maturity</li>
+                            <li>2x customer satisfaction improvement</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 30px; border-radius: 12px; margin-top: 30px;">
+                        <strong style="color: #DC143C; font-size: 1.2rem;">The Next Evolution:</strong>
+                        <p style="color: #666; margin-top: 15px; line-height: 1.8;">
+                            Claude Code multiplies the productivity gains from your DevSecOps transformation. Your teams already have the processes and automation—now give them AI to write code 2-3x faster while maintaining the same security and quality standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark" id="fedramp">
+        <div class="container">
+            <h2 style="color: white;">FedRAMP High Authorization via AWS Bedrock</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Claude models are FedRAMP High authorized through Amazon Bedrock in AWS GovCloud (US)—meeting the highest security requirements for federal and defense applications.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px;">
+                <div style="text-align: center;">
+                    <div class="compliance-badge">FedRAMP High</div>
+                    <p style="color: rgba(255,255,255,0.85); margin-top: 20px; line-height: 1.8;">
+                        Authorized for controlled unclassified information (CUI) and high-impact systems
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="compliance-badge">DoD IL-4/5</div>
+                    <p style="color: rgba(255,255,255,0.85); margin-top: 20px; line-height: 1.8;">
+                        Department of Defense Impact Level 4 and 5 workload approval
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="compliance-badge">AWS GovCloud</div>
+                    <p style="color: rgba(255,255,255,0.85); margin-top: 20px; line-height: 1.8;">
+                        Deployed in isolated AWS regions designed for sensitive workloads
+                    </p>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 12px; margin-top: 60px;">
+                <h3 style="font-size: 2rem; margin-bottom: 30px; color: white; text-align: center;">Available Models & Capabilities</h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 20px; color: #DC143C;">FedRAMP-Authorized Models</h4>
+                        <ul style="color: rgba(255,255,255,0.85); line-height: 2; margin-left: 20px;">
+                            <li><strong style="color: white;">Claude 3.5 Sonnet v1:</strong> Most powerful model for complex coding tasks</li>
+                            <li><strong style="color: white;">Claude 3 Haiku:</strong> Fast, efficient model for routine development</li>
+                            <li><strong style="color: white;">Amazon Bedrock Agents:</strong> Build autonomous AI workflows</li>
+                            <li><strong style="color: white;">Bedrock Guardrails:</strong> Policy enforcement and content filtering</li>
+                            <li><strong style="color: white;">Knowledge Bases:</strong> Integrate proprietary documentation</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 20px; color: #DC143C;">Security & Compliance</h4>
+                        <ul style="color: rgba(255,255,255,0.85); line-height: 2; margin-left: 20px;">
+                            <li><strong style="color: white;">Zero Data Retention:</strong> Your code never trains our models</li>
+                            <li><strong style="color: white;">Encrypted at Rest & In Transit:</strong> AES-256 and TLS 1.2+</li>
+                            <li><strong style="color: white;">VPC Isolation:</strong> Deploy within your network boundaries</li>
+                            <li><strong style="color: white;">AWS IAM Integration:</strong> Fine-grained access control</li>
+                            <li><strong style="color: white;">Audit Logging:</strong> Complete CloudTrail integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; text-align: center;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: white;">Additional Compliance Standards</h3>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px;">
+                    <div class="compliance-badge">SOC 2 Type II</div>
+                    <div class="compliance-badge">ISO 27001</div>
+                    <div class="compliance-badge">HIPAA Eligible</div>
+                    <div class="compliance-badge">GDPR Compliant</div>
+                    <div class="compliance-badge">CSA STAR Level 2</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="roi">
+        <div class="container">
+            <h2>ROI for Honeywell Engineering Teams</h2>
+
+            <div class="two-column">
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 25px; color: #DC143C;">Engineering Productivity Gains</h3>
+
+                    <div style="background: #f8f9fa; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: #191919;">Assumption: 1,000 Engineers</h4>
+                        <p style="color: #666; line-height: 1.8;">Based on Honeywell's scale and 800+ trained DevSecOps team members</p>
+                    </div>
+
+                    <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #191919;">Productivity Increase</div>
+                                <div style="font-size: 0.9rem; color: #666;">2-3x faster development</div>
+                            </div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #DC143C;">2.5x</div>
+                        </div>
+                        <div style="border-top: 2px solid #f0f0f0; padding-top: 20px;">
+                            <p style="color: #666; line-height: 1.8;">
+                                <strong>Value:</strong> Equivalent to adding 1,500 engineers<br>
+                                <strong>Cost Avoidance:</strong> $300M annually @ $200K/engineer
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #191919;">Time to Market</div>
+                                <div style="font-size: 0.9rem; color: #666;">Ship critical features faster</div>
+                            </div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #DC143C;">6-12mo</div>
+                        </div>
+                        <div style="border-top: 2px solid #f0f0f0; padding-top: 20px;">
+                            <p style="color: #666; line-height: 1.8;">
+                                Features that took 12 months now ship in 4-6 months, giving Honeywell competitive advantage in aerospace, industrial automation, and building technologies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 2rem; margin-bottom: 25px; color: #DC143C;">3-Year Financial Impact</h3>
+
+                    <div style="background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%); padding: 40px; border-radius: 12px; color: white; margin-bottom: 30px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.2rem; margin-bottom: 10px; opacity: 0.9;">Total 3-Year Value</div>
+                            <div style="font-size: 4rem; font-weight: 700; margin-bottom: 20px;">$780M</div>
+                            <div style="font-size: 1rem; opacity: 0.85;">Engineering cost avoidance + time-to-market gains</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #DC143C;">Year 1</div>
+                            <div style="font-size: 1.1rem; color: #666; margin-top: 10px;">$210M</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #DC143C;">Year 2</div>
+                            <div style="font-size: 1.1rem; color: #666; margin-top: 10px;">$270M</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.8rem; font-weight: 700; color: #DC143C;">Year 3</div>
+                            <div style="font-size: 1.1rem; color: #666; margin-top: 10px;">$300M</div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <strong>Beyond Cost Savings:</strong>
+                        <ul style="margin-top: 15px; margin-left: 20px; color: #666; line-height: 2;">
+                            <li><strong>Security Improvements:</strong> Fewer vulnerabilities, faster patching</li>
+                            <li><strong>Quality Increase:</strong> More comprehensive testing, better code</li>
+                            <li><strong>Innovation Velocity:</strong> Engineers spend time on new features, not boilerplate</li>
+                            <li><strong>Competitive Advantage:</strong> Faster product development cycles</li>
+                            <li><strong>Talent Retention:</strong> Engineers want to work with cutting-edge AI tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 50px; border-radius: 12px; margin-top: 60px;">
+                <h3 style="font-size: 2rem; margin-bottom: 30px; text-align: center; color: #191919;">Aligns with Honeywell's 2024 Transformation Results<sup><a href="#footnote-1" style="color: #DC143C; text-decoration: none;">1</a></sup></h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <h4 style="color: #DC143C; margin-bottom: 15px;">Your 2024 DevSecOps Win</h4>
+                        <ul style="color: #666; line-height: 2;">
+                            <li>✓ 65% deployment cycle reduction</li>
+                            <li>✓ 100% CI/CD automation achieved</li>
+                            <li>✓ 30% DevSecOps maturity increase</li>
+                            <li>✓ 2x customer satisfaction improvement</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DC143C; margin-bottom: 15px;">Claude Code Acceleration</h4>
+                        <ul style="color: #666; line-height: 2;">
+                            <li>✓ 2-3x individual developer productivity</li>
+                            <li>✓ Maintain security & compliance standards</li>
+                            <li>✓ Faster feature development & deployment</li>
+                            <li>✓ Better code quality with AI assistance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark">
+        <div class="container">
+            <h2 style="color: white;">Implementation Approach</h2>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 12px; margin-top: 40px;">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+                    <div style="text-align: center;">
+                        <div style="background: #DC143C; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 20px;">1</div>
+                        <h4 style="color: white; margin-bottom: 15px;">Pilot (Month 1-2)</h4>
+                        <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8;">
+                            10-20 engineers<br>
+                            FedRAMP setup via AWS Bedrock<br>
+                            Measure productivity baseline
+                        </p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #DC143C; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 20px;">2</div>
+                        <h4 style="color: white; margin-bottom: 15px;">Expand (Month 3-6)</h4>
+                        <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8;">
+                            100-200 engineers<br>
+                            Tool integration (Jenkins, GitLab, etc.)<br>
+                            Training & best practices
+                        </p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #DC143C; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 20px;">3</div>
+                        <h4 style="color: white; margin-bottom: 15px;">Scale (Month 7-12)</h4>
+                        <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8;">
+                            All 1,000+ engineers<br>
+                            Full DevSecOps integration<br>
+                            Custom workflows & guardrails
+                        </p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #DC143C; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 20px;">4</div>
+                        <h4 style="color: white; margin-bottom: 15px;">Optimize (Ongoing)</h4>
+                        <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8;">
+                            Continuous improvement<br>
+                            Advanced features<br>
+                            Expanded use cases
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; text-align: center;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: white;">Success Metrics</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #DC143C; margin-bottom: 10px;">Velocity</div>
+                        <div style="color: rgba(255,255,255,0.85);">Story points per sprint<br>Time to production</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #DC143C; margin-bottom: 10px;">Quality</div>
+                        <div style="color: rgba(255,255,255,0.85);">Defect density<br>Security vulnerabilities</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #DC143C; margin-bottom: 10px;">Satisfaction</div>
+                        <div style="color: rgba(255,255,255,0.85);">Developer NPS<br>Adoption rates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-box" style="margin: 80px 20px;">
+        <div class="container">
+            <h2>Ready to Accelerate Honeywell's DevSecOps?</h2>
+            <p style="font-size: 1.2rem; margin: 30px 0; opacity: 0.95;">
+                Let's discuss how Claude Code can help your 800+ DevSecOps team members build faster while maintaining FedRAMP compliance and security standards.
+            </p>
+            <a href="mailto:dhartman@anthropic.com?subject=Claude Code for Honeywell DevSecOps" class="button">Schedule Discussion</a>
+        </div>
+    </div>
+
+    <section style="background: #f8f9fa; padding: 40px 20px; border-top: 1px solid #e0e0e0;">
+        <div class="container">
+            <p id="footnote-1" style="font-size: 0.9rem; color: #666; line-height: 1.8;">
+                <sup>1</sup> Source: <a href="https://opsera.ai/blog/how-honeywell-transformed-their-devops-and-you-can-too" target="_blank" style="color: #DC143C; text-decoration: none; border-bottom: 1px solid #DC143C;">Honeywell DevSecOps Transformation Case Study</a> - Opsera.ai. Metrics based on Honeywell's DevOps transformation initiative which achieved 100% automation across CI/CD pipelines, trained 800 people across enterprise IT, and reduced deployment cycle times by 65% while improving DevSecOps maturity by 30%.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <p style="margin-bottom: 10px;"><strong>Contact</strong></p>
+            <p><strong>Dan Hartman</strong></p>
+            <p>Anthropic Sales Team</p>
+            <p><a href="mailto:dhartman@anthropic.com">dhartman@anthropic.com</a></p>
+            <p><a href="tel:+12157797511">215-779-7511</a></p>
+            <p style="margin-top: 30px; color: #666;">© 2025 Anthropic. This proposal is confidential and intended solely for Honeywell's evaluation.</p>
+        </div>
+    </footer>
+</body>
+</html>
