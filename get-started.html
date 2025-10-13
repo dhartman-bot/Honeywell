@@ -311,24 +311,24 @@
         <div class="container">
             <h2>Implementation Overview</h2>
             <p style="font-size: 1.1rem; color: #666; margin-bottom: 40px; line-height: 1.8;">
-                This guide walks you through setting up Claude Code access via AWS Bedrock in AWS GovCloud (US) to ensure FedRAMP High compliance. The entire process typically takes 2-4 weeks from start to production.
+                This guide walks you through setting up Claude Code access via AWS Bedrock in AWS GovCloud (US) to ensure FedRAMP High compliance. The entire process typically takes 1-2 weeks from start to production.
             </p>
 
             <div class="timeline">
                 <div class="timeline-item">
-                    <h4>Week 1: Prerequisites & AWS Setup</h4>
+                    <h4>Days 1-2: Prerequisites & AWS Setup</h4>
                     <p style="color: #666;">Configure AWS GovCloud account and IAM permissions</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>Week 2: Bedrock Configuration</h4>
+                    <h4>Days 3-4: Bedrock Configuration</h4>
                     <p style="color: #666;">Enable Claude models and configure guardrails</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>Week 3: Pilot Deployment</h4>
+                    <h4>Week 1-2: Pilot Deployment</h4>
                     <p style="color: #666;">Deploy to 10-20 engineers for testing</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>Week 4+: Scale & Optimize</h4>
+                    <h4>Week 3+: Scale & Optimize</h4>
                     <p style="color: #666;">Roll out to full team and integrate with existing tooling</p>
                 </div>
             </div>
@@ -682,7 +682,7 @@ pipeline {
                     <li>☑️ Conduct onboarding training session (1-2 hours)</li>
                     <li>☑️ Provide written documentation and best practices</li>
                     <li>☑️ Set up dedicated Slack/Teams channel for support</li>
-                    <li>☑️ Schedule weekly feedback sessions</li>
+                    <li>☑️ Schedule daily feedback sessions in first week</li>
                     <li>☑️ Track key metrics:
                         <ul style="margin-top: 10px;">
                             <li>Developer productivity (story points/sprint)</li>
@@ -691,7 +691,7 @@ pipeline {
                             <li>Engineer satisfaction (NPS)</li>
                         </ul>
                     </li>
-                    <li>☑️ Run pilot for 2-4 weeks before full rollout</li>
+                    <li>☑️ Run pilot for 1-2 weeks before full rollout</li>
                 </ol>
             </div>
 
@@ -705,19 +705,19 @@ pipeline {
                 <div class="timeline">
                     <div class="timeline-item">
                         <h4>Phase 1: Core Development Teams (100 engineers)</h4>
-                        <p style="color: #666;">Week 1-2 after pilot</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Phase 2: Platform & Infrastructure Teams (200 engineers)</h4>
                         <p style="color: #666;">Week 3-4</p>
                     </div>
                     <div class="timeline-item">
-                        <h4>Phase 3: QA & Testing Teams (200 engineers)</h4>
+                        <h4>Phase 2: Platform & Infrastructure Teams (200 engineers)</h4>
                         <p style="color: #666;">Week 5-6</p>
                     </div>
                     <div class="timeline-item">
-                        <h4>Phase 4: Remaining Teams (300+ engineers)</h4>
+                        <h4>Phase 3: QA & Testing Teams (200 engineers)</h4>
                         <p style="color: #666;">Week 7-8</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Phase 4: Remaining Teams (300+ engineers)</h4>
+                        <p style="color: #666;">Week 9-12</p>
                     </div>
                 </div>
 
